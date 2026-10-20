@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Student memories, school activities and event photos.">
+  <title>{% block title %}Student Gallery{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="{{ url_for('index') }}"><span class="brand-mark">SG</span><span>Student Gallery<small>Memories • Moments • Milestones</small></span></a>
+  <nav><a href="{{ url_for('index') }}">Gallery</a><a class="nav-button" href="{{ url_for('dashboard') if session.get('admin_id') else url_for('login') }}">{{ 'Admin Dashboard' if session.get('admin_id') else 'Admin Login' }}</a></nav>
+</header>
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}<div class="flash-wrap">{% for category, message in messages %}<div class="flash {{ category }}">{{ message }}</div>{% endfor %}</div>{% endif %}
+{% endwith %}
+<main>{% block content %}{% endblock %}</main>
+<footer><span>Student Gallery</span><span>Every picture tells a story.</span></footer>
+</body></html>

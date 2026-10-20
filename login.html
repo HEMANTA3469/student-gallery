@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block title %}Admin Login | Student Gallery{% endblock %}
+{% block content %}
+<section class="login-area"><div class="login-aside"><span class="eyebrow">PRIVATE ADMIN AREA</span><h1>Bring your<br><em>memories to life.</em></h1><p>Upload and organize student photos in one simple place.</p><div class="login-badge">✦ &nbsp; Simple. Secure. Organized.</div></div>
+<form class="login-card" method="post"><span class="eyebrow">WELCOME BACK</span><h2>Admin Login</h2><p>Sign in to manage your gallery.</p><label>Username<input name="username" required autocomplete="username" placeholder="Enter username"></label><label>Password<input name="password" type="password" required autocomplete="current-password" placeholder="Enter password"></label><button class="primary-btn full" type="submit">Sign In <span>→</span></button><a class="back-link" href="{{ url_for('index') }}">← Back to gallery</a><small class="demo-note">First-time login: admin / admin123. Change this before publishing online.</small></form></section>
+{% endblock %}

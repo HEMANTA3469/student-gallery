@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Student Gallery | Memories{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero-copy"><span class="eyebrow">STUDENT MOMENTS • OUR STORIES</span><h1>Moments that<br><em>stay forever.</em></h1><p>A collection of student portraits, classroom memories and learning moments.</p><a class="primary-btn" href="#gallery">Explore Gallery <span>↘</span></a></div>
+  <div class="hero-art"><div class="art-card art-one"><span>✦</span><b>Learn</b></div><div class="art-card art-two"><span>◉</span><b>Grow</b></div><div class="art-card art-three"><span>↗</span><b>Shine</b></div><div class="art-note">A collection of<br>our best days.</div></div>
+</section>
+<section id="gallery" class="gallery-section">
+  <div class="section-heading"><div><span class="eyebrow">THE PHOTO WALL</span><h2>Student Gallery</h2><p>Celebrating every student.</p></div><span class="photo-count">{{ photos|length }} photo{{ '' if photos|length == 1 else 's' }}</span></div>
+  <div class="filters"><a class="{{ 'active' if not selected else '' }}" href="{{ url_for('index') }}">All Photos</a>{% for cat in categories %}<a class="{{ 'active' if selected == cat else '' }}" href="{{ url_for('index', category=cat) }}">{{ cat }}</a>{% endfor %}</div>
+  {% if photos %}
+  <div class="photo-grid">{% for photo in photos %}
+    <article class="photo-card"><a class="photo-link" href="{{ url_for('static', filename='uploads/' ~ photo.filename) }}" target="_blank"><img src="{{ url_for('static', filename='uploads/' ~ photo.filename) }}" alt="{{ photo.title }}" loading="lazy"></a><div class="photo-info"><div><h3>{{ photo.title }}</h3><span>{{ photo.category }}</span></div><span class="photo-arrow">↗</span></div></article>
+  {% endfor %}</div>
+  {% else %}
+  <div class="empty-state"><div class="empty-icon">▧</div><h3>Your gallery starts here</h3><p>Sign in as admin to upload the first student photo.</p><a class="primary-btn" href="{{ url_for('login') }}">Open Admin Login →</a></div>
+  {% endif %}
+</section>
+{% endblock %}
